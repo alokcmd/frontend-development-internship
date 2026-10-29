@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 - Profile Card</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef2ff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: white;
+            width: 320px;
+            padding: 30px;
+            text-align: center;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px #00000020;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            margin: auto;
+            border-radius: 50%;
+            background: #4338ca;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #1f2937;
+            font-size: 24px;
+        }
+
+        p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .skills {
+            background: #eef2ff;
+            padding: 10px;
+            border-radius: 8px;
+            color: #3730a3;
+        }
+
+        button {
+            background: #4338ca;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #312e81;
+        }
+
+        #extra {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <div class="avatar">AK</div>
+
+        <h1>Alok Kumar Singh</h1>
+
+        <p>Frontend Developer Intern</p>
+
+        <div class="skills">
+            HTML | CSS | JavaScript | GitHub
+        </div>
+
+        <p id="extra">
+            I am learning frontend development and building
+            projects to improve my programming skills.
+        </p>
+
+        <button onclick="toggleInfo()" id="infoButton">
+            Know More
+        </button>
+    </div>
+
+    <script>
+        function toggleInfo() {
+            const extra = document.getElementById("extra");
+            const button = document.getElementById("infoButton");
+
+            if (extra.style.display === "block") {
+                extra.style.display = "none";
+                button.innerText = "Know More";
+            } else {
+                extra.style.display = "block";
+                button.innerText = "Show Less";
+            }
+        }
+    </script>
+
+</body>
+</html>
