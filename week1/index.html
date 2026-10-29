@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Week 1 - Frontend Internship</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px #cccccc;
+        }
+
+        h1 {
+            color: blue;
+        }
+
+        p {
+            color: #333333;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: darkblue;
+        }
+
+        footer {
+            margin-top: 25px;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Hello World!</h1>
+
+        <h2>Frontend Development Internship</h2>
+
+        <p>
+            Welcome to my internship journey.
+            I am learning HTML, CSS, JavaScript,
+            Git and GitHub.
+        </p>
+
+        <p id="message">
+            This is my Week 1 project.
+        </p>
+
+        <button onclick="showMessage()">
+            Click Me
+        </button>
+
+        <footer>
+            <p>Week 1 - Fundamentals and Setup</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById("message").innerText =
+                "Hello! My Week 1 project is working successfully.";
+        }
+    </script>
+
+</body>
+</html>
