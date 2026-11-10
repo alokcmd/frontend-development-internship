@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Student Task Manager - StudyMate">
+
+    <title>StudyMate - Student Task Manager</title>
+
+    <style>
+        /* General Styling */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6fb;
+            color: #202638;
+            line-height: 1.5;
+        }
+
+        /* Header */
+
+        header {
+            background-color: white;
+            border-bottom: 1px solid #e1e6f0;
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3157d5;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        #themeButton,
+        .primary-btn {
+            background-color: #3157d5;
+            color: white;
+            border: none;
+            padding: 11px 16px;
+            border-radius: 8px;
+        }
+
+        /* Main Section */
+
+        main {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 18px;
+        }
+
+        .intro {
+            margin-bottom: 22px;
+        }
+
+        .intro h1 {
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+        .muted {
+            color: #68738a;
+        }
+
+        /* Statistics */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px #ddd;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 28px;
+            margin-top: 5px;
+            color: #3157d5;
+        }
+
+        /* Layout */
+
+        .layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 18px;
+        }
+
+        .panel {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px #ddd;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        /* Form */
+
+        label {
+            display: block;
+            margin: 12px 0 5px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        .form-actions {
+            margin-top: 15px;
+        }
+
+        .primary-btn {
+            width: 100%;
+            font-size: 15px;
+        }
+
+        /* Task Tools */
+
+        .task-tools {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .task-tools input {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .task-tools select {
+            width: 130px;
+        }
+
+        /* Task List */
+
+        .task-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 13px;
+            border: 1px solid #e1e6f0;
+            border-radius: 9px;
+            background-color: white;
+        }
+
+        .task-info {
+            min-width: 0;
+        }
+
+        .task-info strong {
+            display: block;
+            overflow-wrap: anywhere;
+        }
+
+        .task-meta {
+            color: #68738a;
+            font-size: 13px;
+        }
+
+        .task.done strong {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 7px;
+        }
+
+        .small-btn {
+            border: 1px solid #ddd;
+            background-color: white;
+            padding: 7px 9px;
+            border-radius: 6px;
+        }
+
+        .delete {
+            color: red;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 25px;
+            color: gray;
+        }
+
+        /* Footer */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #68738a;
+        }
+
+        /* Dark Mode */
+
+        body.dark {
+            background-color: #111827;
+            color: white;
+        }
+
+        body.dark header,
+        body.dark .stat,
+        body.dark .panel,
+        body.dark .task {
+            background-color: #1f2937;
+            color: white;
+        }
+
+        body.dark input,
+        body.dark select,
+        body.dark .small-btn {
+            background-color: #111827;
+            color: white;
+        }
+
+        /* Responsive Design */
+
+        @media (max-width: 760px) {
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 14px 18px;
+            }
+
+            .intro h1 {
+                font-size: 25px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+
+        <div class="brand">StudyMate</div>
+
+        <button id="themeButton" type="button">
+            Toggle Theme
+        </button>
+
+    </header>
+
+    <!-- Main Section -->
+
+    <main>
+
+        <section class="intro">
+
+            <h1>Student Task Manager</h1>
+
+            <p class="muted">
+                Plan your work, manage study tasks,
+                and track your progress.
+            </p>
+
+        </section>
+
+        <!-- Statistics -->
+
+        <section class="stats">
+
+            <div class="stat">
+                <span class="muted">Total Tasks</span>
+                <strong id="totalCount">0</strong>
+            </div>
+
+            <div class="stat">
+                <span class="muted">Completed</span>
+                <strong id="completedCount">0</strong>
+            </div>
+
+            <div class="stat">
+                <span class="muted">Pending</span>
+                <strong id="pendingCount">0</strong>
+            </div>
+
+        </section>
+
+        <!-- Main Layout -->
+
+        <div class="layout">
+
+            <!-- Add Task Form -->
+
+            <section class="panel">
+
+                <h2>Add a Task</h2>
+
+                <form id="taskForm">
+
+                    <label for="taskTitle">
+                        Task Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="taskTitle"
+                        maxlength="80"
+                        placeholder="Enter your task"
+                        required
+                    >
+
+                    <label for="taskCategory">
+                        Category
+                    </label>
+
+                    <select id="taskCategory">
+
+                        <option>Study</option>
+
+                        <option>Project</option>
+
+                        <option>Interview Preparation</option>
+
+                        <option>Personal</option>
+
+                    </select>
+
+                    <label for="taskDue">
+                        Due Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="taskDue"
+                    >
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="primary-btn"
+                        >
+                            Add Task
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <p class="muted" style="font-size:13px; margin-top:15px;">
+
+                    Your tasks are saved in this browser.
+
+                </p>
+
+            </section>
+
+            <!-- Task List -->
+
+            <section class="panel">
+
+                <h2>My Tasks</h2>
+
+                <div class="task-tools">
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search tasks..."
+                    >
+
+                    <select id="filterSelect">
+
+                        <option value="all">All Tasks</option>
+
+                        <option value="pending">Pending</option>
+
+                        <option value="completed">Completed</option>
+
+                    </select>
+
+                </div>
+
+                <div id="taskList" class="task-list"></div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            StudyMate Capstone Project
+        </p>
+
+        <p>
+            Final Project and Assessment | 2026
+        </p>
+
+    </footer>
+
+    <!-- JavaScript -->
+
+    <script>
+
+        // Get HTML Elements
+
+        const form = document.getElementById("taskForm");
+
+        const titleInput = document.getElementById("taskTitle");
+
+        const categoryInput = document.getElementById("taskCategory");
+
+        const dueInput = document.getElementById("taskDue");
+
+        const taskList = document.getElementById("taskList");
+
+        const searchInput = document.getElementById("searchInput");
+
+        const filterSelect = document.getElementById("filterSelect");
+
+
+        // Load Tasks From Local Storage
+
+        let tasks = [];
+
+        try {
+
+            tasks = JSON.parse(
+                localStorage.getItem("studymate_tasks")
+            ) || [];
+
+            if (!Array.isArray(tasks)) {
+                tasks = [];
+            }
+
+        } catch (error) {
+
+            tasks = [];
+
+        }
+
+
+        // Save Tasks
+
+        function saveTasks() {
+
+            localStorage.setItem(
+                "studymate_tasks",
+                JSON.stringify(tasks)
+            );
+
+        }
+
+
+        // Update Statistics
+
+        function updateStats() {
+
+            const completed = tasks.filter(
+                task => task.completed
+            ).length;
+
+            document.getElementById("totalCount").textContent =
+                tasks.length;
+
+            document.getElementById("completedCount").textContent =
+                completed;
+
+            document.getElementById("pendingCount").textContent =
+                tasks.length - completed;
+
+        }
+
+
+        // Display Tasks
+
+        function renderTasks() {
+
+            const search = searchInput.value.toLowerCase().trim();
+
+            const filter = filterSelect.value;
+
+            const visibleTasks = tasks.filter(task => {
+
+                const matchesSearch =
+                    task.title.toLowerCase().includes(search) ||
+                    task.category.toLowerCase().includes(search);
+
+                const matchesFilter =
+                    filter === "all" ||
+                    (filter === "completed" && task.completed) ||
+                    (filter === "pending" && !task.completed);
+
+                return matchesSearch && matchesFilter;
+
+            });
+
+
+            taskList.replaceChildren();
+
+
+            if (visibleTasks.length === 0) {
+
+                const empty = document.createElement("p");
+
+                empty.className = "empty";
+
+                empty.textContent = tasks.length
+                    ? "No matching tasks found."
+                    : "No tasks yet. Add your first task!";
+
+                taskList.appendChild(empty);
+
+            }
+
+
+            visibleTasks.forEach(task => {
+
+                const item = document.createElement("article");
+
+                item.className = "task" +
+                    (task.completed ? " done" : "");
+
+
+                const info = document.createElement("div");
+
+                info.className = "task-info";
+
+
+                const title = document.createElement("strong");
+
+                title.textContent = task.title;
+
+
+                const meta = document.createElement("span");
+
+                meta.className = "task-meta";
+
+                meta.textContent = task.category +
+                    (task.dueDate ? " • Due: " + task.dueDate : "");
+
+
+                info.append(title, meta);
+
+
+                // Task Buttons
+
+                const actions = document.createElement("div");
+
+                actions.className = "task-actions";
+
+
+                // Complete Button
+
+                const toggle = document.createElement("button");
+
+                toggle.className = "small-btn";
+
+                toggle.type = "button";
+
+                toggle.textContent = task.completed ? "Undo" : "Done";
+
+
+                toggle.addEventListener("click", () => {
+
+                    tasks = tasks.map(current => {
+
+                        return current.id === task.id
+                            ? {
+                                ...current,
+                                completed: !current.completed
+                            }
+                            : current;
+
+                    });
+
+                    saveTasks();
+
+                    renderTasks();
+
+                });
+
+
+                // Delete Button
+
+                const remove = document.createElement("button");
+
+                remove.className = "small-btn delete";
+
+                remove.type = "button";
+
+                remove.textContent = "Delete";
+
+
+                remove.addEventListener("click", () => {
+
+                    if (confirm("Delete this task?")) {
+
+                        tasks = tasks.filter(
+                            current => current.id !== task.id
+                        );
+
+                        saveTasks();
+
+                        renderTasks();
+
+                    }
+
+                });
+
+
+                actions.append(toggle, remove);
+
+                item.append(info, actions);
+
+                taskList.appendChild(item);
+
+            });
+
+
+            updateStats();
+
+        }
+
+
+        // Add New Task
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const title = titleInput.value.trim();
+
+
+            if (!title) {
+
+                alert("Please enter a task title.");
+
+                titleInput.focus();
+
+                return;
+
+            }
+
+
+            const newTask = {
+
+                id: Date.now().toString() +
+                    Math.random().toString(16).slice(2),
+
+                title: title,
+
+                category: categoryInput.value,
+
+                dueDate: dueInput.value,
+
+                completed: false
+
+            };
+
+
+            tasks.unshift(newTask);
+
+            saveTasks();
+
+            form.reset();
+
+            titleInput.focus();
+
+            renderTasks();
+
+        });
+
+
+        // Search Tasks
+
+        searchInput.addEventListener(
+            "input",
+            renderTasks
+        );
+
+
+        // Filter Tasks
+
+        filterSelect.addEventListener(
+            "change",
+            renderTasks
+        );
+
+
+        // Dark Mode
+
+        document.getElementById("themeButton")
+            .addEventListener("click", function() {
+
+                document.body.classList.toggle("dark");
+
+                localStorage.setItem(
+                    "studymate_dark",
+                    document.body.classList.contains("dark")
+                );
+
+            });
+
+
+        // Load Theme Preference
+
+        if (localStorage.getItem("studymate_dark") === "true") {
+
+            document.body.classList.add("dark");
+
+        }
+
+
+        // Initial Display
+
+        renderTasks();
+
+    </script>
+
+</body>
+
+</html>
